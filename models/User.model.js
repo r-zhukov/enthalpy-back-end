@@ -30,7 +30,14 @@ const userScheme = new mongoose.Schema({
         type: String,
         required: true,
     },
-});
+    enterprises: [{
+        type: Schema.Types.ObjectId, ref: 'Enterprise'
+    }],
+    contracts: [{
+        type: Schema.Types.ObjectId, ref: 'Contract'
+    }],
+},
+    { timestamps: { createdAt: 'created_at' } });
 
 const User = mongoose.model('User', userScheme);
 
