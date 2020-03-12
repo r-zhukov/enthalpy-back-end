@@ -7,6 +7,6 @@ const companyScheme = new mongoose.Schema({
     },
 });
 
-const Company = mongoose.model('Çompany', companyScheme);
+const Company = mongoose.model('User', companyScheme);
 
-module.exports = User;
+module.exports = Company;
