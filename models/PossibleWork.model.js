@@ -1,20 +1,19 @@
 const mongoose = require('mongoose');
+const {typesOfWork} = require('../utils/constans');
 
 
-const contactScheme = new mongoose.Schema({
-        phone: {
+const possibleWorkScheme = new mongoose.Schema({
+
+        typesOfWork: {
             type: String,
             required: true,
+            enum: typesOfWork,
         },
-        email: {
-            type: String,
+        possibleProfit: {
+            type: Number,
             required: false,
         },
-        fullName: {
-            type: String,
-            required: true,
-        },
-        position: {
+        description: {
             type: String,
             required: false
         },
@@ -24,6 +23,6 @@ const contactScheme = new mongoose.Schema({
     },
     {timestamps: {createdAt: 'created_at'}});
 
-const Contact = mongoose.model('Contact', contactScheme);
+const PossibleWork = mongoose.model('PossibleWork', possibleWorkScheme);
 
-module.exports = Contact;
+module.exports = PossibleWork;
