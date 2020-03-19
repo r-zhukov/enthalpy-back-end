@@ -15,6 +15,14 @@ const barkov = 'tradeDepartment';
 const notMarked = 'notMarked';
 const CODENAME = [shestakov, barkov, notMarked];
 
+const renouncement = 'Отказник';
+const commercialOffer = 'ЦКП';
+const enterpriseStatus = [completed, inProgress];
+
+const completed = 'Закрыт';
+const inProgress = 'В работе';
+const contractsStatus = [completed, inProgress];
+
 
 module.exports = {
     ADMINISTRATOR,
@@ -22,13 +30,19 @@ module.exports = {
     DIRECTOR,
     USER,
     ROLES,
+
     settingUpBoilers,
     heatingNetworks,
     industrialEnergyAudit,
     energyAuditOfBuildings,
     typesOfWork,
+
     shestakov,
     barkov,
     notMarked,
     CODENAME,
+
+    completed,
+    inProgress,
+    contractsStatus,
 };

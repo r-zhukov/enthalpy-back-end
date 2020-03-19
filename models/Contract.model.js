@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {typesOfWork} = require('../utils/constans');
+const {typesOfWork,  contractsStatus} = require('../utils/constans');
 
 
 const contractScheme = new mongoose.Schema({
@@ -20,6 +20,11 @@ const contractScheme = new mongoose.Schema({
             type: Number,
             required: true,
         },
+        contractsStatus: {
+            type: String,
+            required: true,
+            enum: contractsStatus,
+        },
         whoSigned: {
             type: mongoose.Schema.Types.ObjectId, ref: 'User',
         },
@@ -29,6 +34,6 @@ const contractScheme = new mongoose.Schema({
     },
     {timestamps: {createdAt: 'created_at'}});
 
-const Contract = mongoose.model('Contact', contractScheme);
+const Contract = mongoose.model('Contract', contractScheme);
 
 module.exports = Contract;
