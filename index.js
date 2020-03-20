@@ -13,11 +13,15 @@ app.use(express.json());
 app.use("/api", router);
 
 app.use((err, req, res, next) => {
-      switch (err.name) {
+    console.log(err.name);
+    console.log(err);
+    switch (err.name) {
         case "ValidationError":
             return res.status(400).send(err.message);
-        case "*******" :
-            return null;
+        case "CastError" :
+            return res.status(400).send(err.message);
+        case "MissingSchemaError" :
+            return res.status(400).send(err.message);
     }
 });
 

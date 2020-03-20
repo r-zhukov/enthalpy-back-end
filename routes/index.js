@@ -12,7 +12,10 @@ router.post('/user', validateBody(createUserBodySchemes),  hashPassword, userCon
 router.get('/user/:id', userController.getUserById);
 
 
-router.post('/enterprise', validateBody(createEnterpriseBodySchemes), enterpriseController.createEnterprise);
-
+router.post('/user/:id/enterprise', validateBody(createEnterpriseBodySchemes), enterpriseController.createEnterprise);
+router.get('/enterprises', enterpriseController.getAllEnterprises);
+router.get('/user/:id/enterprises', enterpriseController.getUserEnterprises);
+router.get('/enterprises/:id', enterpriseController.getEnterprisesById);
+router.put('/enterprises/:id', enterpriseController.updateEnterprise);
 
 module.exports = router;

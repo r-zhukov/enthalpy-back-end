@@ -18,6 +18,6 @@ const CommentScheme = new mongoose.Schema({
     },
     {timestamps: {createdAt: 'created_at'}});
 
-const Comment = mongoose.model('Call', CommentScheme);
+const Comment = mongoose.model('Comment', CommentScheme);
 
 module.exports = Comment;

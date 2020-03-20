@@ -13,8 +13,19 @@ async function createUser(req, res, next) {
 
 async function getUserById(req, res, next) {
     const id = req.params.id;
-    console.log(req.params);
-    console.log(id);
+    try {
+        const user = await User.findOne({_id: id})
+            .populate('enterprises')
+            .select('-__v');
+        if (user) {
+            return res.send(user);
+        }
+        res.status(404).send('Пользователь не найден');
+    } catch (e) {
+        next(e);
+    }
+
+    /*const id = req.params.id;
     User.findOne({_id: id})
         .populate('enterprises')
         .select('-__v')
@@ -24,7 +35,7 @@ async function getUserById(req, res, next) {
             }
             res.status(404).send('Пользователь не найден');
         })
-        .catch(err => next(err))
+        .catch(err => next(err))*/
 }
 
 module.exports = {

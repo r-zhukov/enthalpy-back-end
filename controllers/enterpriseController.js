@@ -13,6 +13,54 @@ async function createEnterprise(req, res, next) {
     }
 }
 
+async function getUserEnterprises(req, res, next) {
+    const id = req.params.id;
+    try {
+        const user = await User.findOne({_id: id}).populate('enterprises');
+        res.send(user.enterprises)
+    } catch (e) {
+        next(e);
+    }
+}
+
+async function getEnterprisesById(req, res, next) {
+    const id = req.params.id;
+    try {
+        const enterprise = await Enterprise.findOne({_id: id})
+            .select('-__v');
+        if (enterprise) {
+            res.send(enterprise)
+        }
+        res.status(400).send('Предприятие не найдено.');
+    } catch (e) {
+        next(e)
+    }
+}
+
+async function updateEnterprise(req, res, next) {
+    const body = req.body;
+    const id = req.params.id;
+    try {
+        const updateEnterprise = await Enterprise.updateOne({_id: id}, body, {runValidations: true});
+        res.send(updateEnterprise);
+    } catch (e) {
+        next(e)
+    }
+}
+
+async function getAllEnterprises(req, res, next) {
+    try {
+        const enterprises = await Enterprise.find();
+        res.send(enterprises);
+    } catch (e) {
+        next(e);
+    }
+}
+
 module.exports = {
     createEnterprise,
+    getUserEnterprises,
+    getEnterprisesById,
+    updateEnterprise,
+    getAllEnterprises,
 };
