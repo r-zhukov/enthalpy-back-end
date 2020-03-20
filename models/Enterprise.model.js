@@ -6,6 +6,10 @@ const enterpriseScheme = new mongoose.Schema({
         type: String,
         required: true,
     },
+    corporation: {
+        type: String,
+        required: false,
+    },
     whoAdded: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
     },
@@ -42,6 +46,6 @@ const enterpriseScheme = new mongoose.Schema({
 
 });
 
-const Enterprise = mongoose.model('User', enterpriseScheme);
+const Enterprise = mongoose.model('Enterprise', enterpriseScheme);
 
 module.exports = Enterprise;

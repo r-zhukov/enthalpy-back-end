@@ -17,12 +17,11 @@ const CODENAME = [shestakov, barkov, notMarked];
 
 const renouncement = 'Отказник';
 const commercialOffer = 'ЦКП';
-const enterpriseStatus = [completed, inProgress];
+const enterpriseStatus = [renouncement, commercialOffer];
 
 const completed = 'Закрыт';
 const inProgress = 'В работе';
 const contractsStatus = [completed, inProgress];
-
 
 module.exports = {
     ADMINISTRATOR,
@@ -45,4 +44,7 @@ module.exports = {
     completed,
     inProgress,
     contractsStatus,
+    enterpriseStatus,
+    renouncement,
+    commercialOffer,
 };

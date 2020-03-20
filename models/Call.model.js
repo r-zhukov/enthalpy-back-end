@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const {typesOfWork} = require('../utils/constans');
-
 
 const CallScheme = new mongoose.Schema({
         callDate: {
