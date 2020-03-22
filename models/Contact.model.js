@@ -18,6 +18,10 @@ const contactScheme = new mongoose.Schema({
             type: String,
             required: false
         },
+        description: {
+            type: String,
+            required: false,
+        },
         enterprise: {
             type: mongoose.Schema.Types.ObjectId, ref: 'Enterprise'
         },

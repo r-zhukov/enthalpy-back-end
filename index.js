@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/api", router);
 
 app.use((err, req, res, next) => {
-    console.log(err.name);
+
     console.log(err);
     switch (err.name) {
         case "ValidationError":
@@ -22,6 +22,8 @@ app.use((err, req, res, next) => {
             return res.status(400).send(err.message);
         case "MissingSchemaError" :
             return res.status(400).send(err.message);
+       // default:
+           // return res.status(500).send('Что-то пошло не так')
     }
 });
 

@@ -24,21 +24,19 @@ async function getUserById(req, res, next) {
     } catch (e) {
         next(e);
     }
+}
 
-    /*const id = req.params.id;
-    User.findOne({_id: id})
-        .populate('enterprises')
-        .select('-__v')
-        .then(user => {
-            if (user) {
-                return res.send(user)
-            }
-            res.status(404).send('Пользователь не найден');
-        })
-        .catch(err => next(err))*/
+async function getAllUsers(req, res, next) {
+    try {
+        const users = await User.find();
+        res.send(users);
+    } catch (e) {
+        next(e)
+    }
 }
 
 module.exports = {
     createUser,
     getUserById,
+    getAllUsers,
 };

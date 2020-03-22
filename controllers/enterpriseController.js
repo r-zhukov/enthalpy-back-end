@@ -9,7 +9,7 @@ async function createEnterprise(req, res, next) {
         await User.update({_id: createEnterprise.whoAdded}, {$push: {enterprises: createEnterprise._id}});
         res.send(createEnterprise);
     } catch (e) {
-        next(e)
+        next(e);
     }
 }
 
@@ -17,7 +17,10 @@ async function getUserEnterprises(req, res, next) {
     const id = req.params.id;
     try {
         const user = await User.findOne({_id: id}).populate('enterprises');
-        res.send(user.enterprises)
+        if (user) {
+            res.send(user.enterprises)
+        }
+        res.status(404).send('Not found')
     } catch (e) {
         next(e);
     }
@@ -44,7 +47,7 @@ async function updateEnterprise(req, res, next) {
         const updateEnterprise = await Enterprise.updateOne({_id: id}, body, {runValidations: true});
         res.send(updateEnterprise);
     } catch (e) {
-        next(e)
+        next(e);
     }
 }
 
