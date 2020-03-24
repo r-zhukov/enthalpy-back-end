@@ -40,6 +40,12 @@ const userScheme = new mongoose.Schema({
         contracts: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'Contract'
         }],
+        possibleWorks: [{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Contract'
+        }],
+        calls: [{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Call'
+        }],
     },
     { timestamps: { createdAt: 'created_at' } });
 

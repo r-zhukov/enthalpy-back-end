@@ -12,6 +12,9 @@ const CallScheme = new mongoose.Schema({
         enterprise: {
             type: mongoose.Schema.Types.ObjectId, ref: 'Enterprise'
         },
+        caller: {
+            type: mongoose.Schema.Types.ObjectId, ref: 'User'
+        },
     },
     {timestamps: {createdAt: 'created_at'}});
 

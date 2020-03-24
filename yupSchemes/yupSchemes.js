@@ -37,10 +37,16 @@ const createCommentBodySchemes = yup.object().shape({
     description: yup.string().trim(),
 });
 
+const createCallBodySchemes = yup.object().shape({
+    callDate: yup.date().required(),
+    description: yup.string().trim(),
+});
+
 module.exports = {
     paramsScheme,
     createUserBodySchemes,
     createEnterpriseBodySchemes,
     createContactBodySchemes,
     createCommentBodySchemes,
+    createCallBodySchemes,
 };

@@ -1,17 +1,21 @@
 const express = require('express');
 const {hashPassword} = require('../middlewares/hashPassword');
+const callController = require('../controllers/callController');
 const userController = require('../controllers/userController');
+const possibleWorkController = require('../controllers/possibleWorkController');
 const contactController = require('../controllers/contactController');
 const commentController = require('../controllers/commentController');
+const contractController = require('../controllers/contractController');
 const enterpriseController = require('../controllers/enterpriseController');
 
 const {validateBody} = require('../middlewares/validators');
 const {
+    createCallBodySchemes,
     createUserBodySchemes,
-    createEnterpriseBodySchemes,
     createContactBodySchemes,
     createCommentBodySchemes,
-  } = require('../yupSchemes/yupSchemes');
+    createEnterpriseBodySchemes,
+} = require('../yupSchemes/yupSchemes');
 
 const router = express.Router();
 
@@ -25,7 +29,7 @@ router.post('/user/:id/enterprise', validateBody(createEnterpriseBodySchemes), e
 router.get('/enterprise', enterpriseController.getAllEnterprises);
 router.get('/user/:id/enterprise', enterpriseController.getUserEnterprises);
 router.get('/enterprise/:id', enterpriseController.getEnterprisesById);
-router.put('/enterprise/:id', enterpriseController.updateEnterprise);
+router.put('/enterprise/:id', validateBody(createCallBodySchemes), enterpriseController.updateEnterprise);
 
 //Contact routes
 router.post('/enterprise/:id/contact', validateBody(createContactBodySchemes), contactController.createContact);
@@ -38,5 +42,25 @@ router.post('/enterprise/:id/comment', validateBody(createCommentBodySchemes), c
 router.put('/comment/:id', commentController.updateComment);
 router.get('/enterprise/:id/comment', commentController.getEnterpriseComments);
 router.get('/comment/:id', commentController.getCommentById);
+
+//call routes
+router.post('/enterprise/:id/call', callController.createCall);
+router.get('/user/:id/call', callController.getAllUserCalls);
+router.get('/call/:id', callController.getCallById);
+router.put('/call/:id', callController.updateCall);
+
+//PossibleWork routes
+router.post('/enterprise/:id/possibleWork', possibleWorkController.createPossibleWork);
+router.get('/user/:id/possibleWork', possibleWorkController.getAllUserPossibleWorks);
+router.get('/possibleWork/:id', possibleWorkController.getPossibleWorkById);
+router.put('/possibleWork/:id', possibleWorkController.updatePossibleWork);
+
+//Contracts routes
+router.post('/enterprise/:id/contract', contractController.createContract);
+router.get('/user/:id/contract', contractController.getAllUserContracts);
+router.get('/contract/:id', contractController.getContractById);
+router.put('/contract/:id', contractController.updateContract);
+
+
 
 module.exports = router;

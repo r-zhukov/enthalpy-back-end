@@ -17,6 +17,9 @@ const possibleWorkScheme = new mongoose.Schema({
             type: String,
             required: false
         },
+        whoLeads: {
+            type: mongoose.Schema.Types.ObjectId, ref: 'User'
+        },
         enterprise: {
             type: mongoose.Schema.Types.ObjectId, ref: 'Enterprise'
         },
