@@ -1,6 +1,7 @@
 const Call = require('../models/Call.model');
 const User = require('../models/User.model');
 const Enterprise = require('../models/Enterprise.model');
+const moment = require('moment');
 
 async function createCall(req, res, next) {
     const body = req.body;
@@ -18,9 +19,17 @@ async function createCall(req, res, next) {
 
 async function getAllUserCalls(req, res, next) {
     const userId = req.params.id;
+    const query = req.query;
     try {
         const user = await User.findOne({_id: userId}).populate('calls');
-        res.send(user.calls);
+        let userCalls = user.calls;
+        let filteredUserCalls = userCalls.slice();
+        for (const key in query) {
+            filteredUserCalls = filteredUserCalls.filter((call) =>
+                moment((call[key])).format("YYYY-MM-DD") === query[key]
+            );
+        }
+        res.send(filteredUserCalls);
     } catch (e) {
         next(e);
     }
