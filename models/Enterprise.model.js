@@ -13,6 +13,10 @@ const enterpriseScheme = new mongoose.Schema({
         whoAdded: {
             type: mongoose.Schema.Types.ObjectId, ref: 'User'
         },
+        status: {
+            type: String,
+            required: false,
+        },
         codeName: {
             type: String,
             required: true,

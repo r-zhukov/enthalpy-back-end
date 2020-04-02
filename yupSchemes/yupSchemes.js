@@ -22,6 +22,7 @@ const createEnterpriseBodySchemes = yup.object().shape({
     address: yup.string(),
     industry: yup.string(),
     corporation: yup.string(),
+    status: yup.string(),
 });
 
 const createContactBodySchemes = yup.object().shape({

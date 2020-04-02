@@ -3,11 +3,14 @@ const Enterprise = require('../models/Enterprise.model');
 
 async function createEnterprise(req, res, next) {
     const body = req.body;
+    console.log(body);
     try {
         const enterpriseModel = new Enterprise(body);
         const createEnterprise = await enterpriseModel.save();
         await User.update({_id: createEnterprise.whoAdded}, {$push: {enterprises: createEnterprise._id}});
-        res.send(createEnterprise);
+        const createEnterprisePopulate = await Enterprise.findOne({_id: createEnterprise._id}).populate("whoAdded")
+        res.send(createEnterprisePopulate);
+        console.log(createEnterprisePopulate);
     } catch (e) {
         next(e);
     }
@@ -52,8 +55,9 @@ async function updateEnterprise(req, res, next) {
 }
 
 async function getAllEnterprises(req, res, next) {
+    console.log("front");
     try {
-        const enterprises = await Enterprise.find();
+        const enterprises = await Enterprise.find().populate('whoAdded');
         res.send(enterprises);
     } catch (e) {
         next(e);

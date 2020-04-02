@@ -25,7 +25,7 @@ router.get('/user/:id', userController.getUserById);
 router.get('/user', userController.getAllUsers);
 
 //Enterprise routes
-router.post('/user/:id/enterprise', validateBody(createEnterpriseBodySchemes), enterpriseController.createEnterprise);
+router.post('/enterprise', validateBody(createEnterpriseBodySchemes), enterpriseController.createEnterprise);
 router.get('/enterprise', enterpriseController.getAllEnterprises);
 router.get('/user/:id/enterprise', enterpriseController.getUserEnterprises);
 router.get('/enterprise/:id', enterpriseController.getEnterprisesById);
