@@ -11,7 +11,8 @@ const enterpriseScheme = new mongoose.Schema({
             required: false,
         },
         whoAdded: {
-            type: mongoose.Schema.Types.ObjectId, ref: 'User'
+            type: mongoose.Schema.Types.ObjectId, ref: 'User',
+            required: true
         },
         status: {
             type: String,

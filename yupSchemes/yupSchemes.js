@@ -43,6 +43,11 @@ const createCallBodySchemes = yup.object().shape({
     description: yup.string().trim(),
 });
 
+const createEnterpriseStatusBodySchemes = yup.object().shape({
+    title: yup.string().trim().required(),
+    description: yup.string().trim().required(),
+});
+
 module.exports = {
     paramsScheme,
     createUserBodySchemes,
@@ -50,4 +55,5 @@ module.exports = {
     createContactBodySchemes,
     createCommentBodySchemes,
     createCallBodySchemes,
+    createEnterpriseStatusBodySchemes,
 };

@@ -55,7 +55,6 @@ async function updateEnterprise(req, res, next) {
 }
 
 async function getAllEnterprises(req, res, next) {
-    console.log("front");
     try {
         const enterprises = await Enterprise.find().populate('whoAdded');
         res.send(enterprises);

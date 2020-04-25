@@ -7,6 +7,7 @@ const contactController = require('../controllers/contactController');
 const commentController = require('../controllers/commentController');
 const contractController = require('../controllers/contractController');
 const enterpriseController = require('../controllers/enterpriseController');
+const enterpriseStatusController = require('../controllers/enterpriseStatusController');
 
 const {validateBody} = require('../middlewares/validators');
 const {
@@ -15,6 +16,7 @@ const {
     createContactBodySchemes,
     createCommentBodySchemes,
     createEnterpriseBodySchemes,
+    createEnterpriseStatusBodySchemes,
 } = require('../yupSchemes/yupSchemes');
 
 const router = express.Router();
@@ -61,6 +63,9 @@ router.get('/user/:id/contract', contractController.getAllUserContracts);
 router.get('/contract/:id', contractController.getContractById);
 router.put('/contract/:id', contractController.updateContract);
 
+//Contracts routes
+router.post('/enterpriseStatus', enterpriseStatusController.createEnterpriseStatus);
+router.get('/enterpriseStatus', enterpriseStatusController.getAllEnterpriseStatus);
 
 
 module.exports = router;
